@@ -41,5 +41,15 @@ userRouter.post("/register", async (req, res) => {
     }
 })
 
+userRouter.get("/:id", async (req, res) => {
+    const { id } = req.params
+    try {
+        const user = await User.findOne({ _id: id })
+        return res.status(200).send(user)
+    } catch (e) {
+        return res.status(500).send("Internal server Error")
+    }
+})
+
 
 module.exports = userRouter
