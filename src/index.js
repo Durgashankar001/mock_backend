@@ -4,6 +4,8 @@ const User = require("../Models/user.model")
 const cors = require("cors")
 const connect = require("../Connect/Connect")
 const req = require("express/lib/request")
+const userRouter = require("../Controller/user.router")
+const EmiRouter = require("../Controller/Emi.router")
 const PORT = process.env.PORT || 8000
 mongoose.set('strictQuery', true)
 const server = express()
@@ -13,10 +15,8 @@ server.use(cors())
 server.get("/",async(req,res)=>{
     res.status(200).send("Hello Welcome to my server")
 })
-server.get("/user",async(req,res)=>{
-    let user = await User.find()
-    res.status(200).send({message:"successfully get",data:user})
-})
+server.use("/user",userRouter)
+server.use("/emi",EmiRouter)
 server.post("/",async(req,res)=>{
     const user = req.body
     console.log(user)
