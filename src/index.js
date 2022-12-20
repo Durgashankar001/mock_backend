@@ -3,7 +3,8 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const connect = require("../Connect/Connect")
 const req = require("express/lib/request")
-const jobRouter = require("../Controller/job.router")
+const wordRouter = require("../Controller/random.router")
+const userRouter = require("../Controller/user.router")
 const PORT = process.env.PORT || 8000
 mongoose.set('strictQuery', true)
 const server = express()
@@ -13,7 +14,8 @@ server.use(cors())
 server.get("/", async (req, res) => {
     res.status(200).send("Hello Welcome to my server")
 })
-server.use("/job", jobRouter)
+server.use("/word", wordRouter)
+server.use("/user", userRouter)
 
 server.post("/", async (req, res) => {
     const user = req.body
