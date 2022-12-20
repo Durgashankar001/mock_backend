@@ -16,7 +16,7 @@ userRouter.post("/", async (req, res) => {
 
 userRouter.get("/", async (req, res) => {
     try {
-        let data = await gameModel.find()
+        let data = await gameModel.find().sort({ "score": -1 })
         return res.status(200).send({ message: "data added successfully", data: data })
     } catch (e) {
         return res.status(500).send("Internal server error")
