@@ -5,7 +5,7 @@ wordRouter.get("/", async (req, res) => {
     try {
         const all = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
         let ans = [];
-        let x = Math.floor(Math.random() * (8 - 3)) + 5;
+        let x = Math.floor(Math.random() * (8 - 3)) + 3;
         for (let i = 0; i < x; i++) {
             let y = all.charAt(Math.floor(Math.random() * all.length));
             ans.push(y)
