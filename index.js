@@ -1,10 +1,10 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
-const connect = require("../Connect/Connect")
+const connect = require("./Connect/Connect")
 const req = require("express/lib/request")
-const wordRouter = require("../Controller/random.router")
-const userRouter = require("../Controller/user.router")
+const wordRouter = require("./Controller/random.router")
+const userRouter = require("./Controller/user.router")
 const PORT = process.env.PORT || 8000
 mongoose.set('strictQuery', true)
 const server = express()
