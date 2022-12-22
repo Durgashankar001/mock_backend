@@ -1,9 +1,12 @@
 const mongoose = require("mongoose")
 const gameSchema = new mongoose.Schema({
-    name:{type:String,required:true},
-    level:{type:String,required:true},
-    score:{type:Number,required:true}
+    category:{type:String,required:true},
+    type:{type:String,required:true},
+    difficulty:{type:String,required:true},
+    question:{type:String,required:true},
+    correct_answer:{type:String,required:true},
+    incorrect_answers:{type:Array,required:true},
 },{ timestamps: true })
-const gameModel = mongoose.model("game",gameSchema)
+const questionModel = mongoose.model("question",gameSchema)
 
-module.exports = gameModel
+module.exports = questionModel

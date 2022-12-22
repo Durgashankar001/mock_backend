@@ -1,23 +1,19 @@
 const express = require('express');
-const gameModel = require('../Models/random.model');
+const questionModel = require('../Models/random.model');
+
 const wordRouter = express.Router()
+
 wordRouter.get("/", async (req, res) => {
+    const { category, limit, level } = req.query
+    console.log(category,limit,level)
     try {
-        const all = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-        let ans = [];
-        let x = Math.floor(Math.random() * (8 - 3)) + 3;
-        for (let i = 0; i < x; i++) {
-            let y = all.charAt(Math.floor(Math.random() * all.length));
-            ans.push(y)
-        }
-        return res.status(200).send({ message: "Word generate successfully", data: ans })
-    } catch (e) {
-        return res.status(500).send("Internal server error")
+        const data = await questionModel.find({$and:[{"category":category},{difficulty:level}]}).limit(limit)
+       const totalPages = data.length
+        return res.status(200).send({message:"Data Get successfull",data:data,totalPages:totalPages})
+    }
+    catch {
+        return res.status(200).send("Internal server Error")
     }
 })
-
-
-
-
 
 module.exports = wordRouter
